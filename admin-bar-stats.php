@@ -37,6 +37,7 @@ define( __NAMESPACE__ . '\DIR', plugin_dir_path( __FILE__ ) );
 define( __NAMESPACE__ . '\HOOK_PREFIX', 'abstats_' );
 
 // Go and load our files.
+require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/datasets.php';
 require_once __DIR__ . '/includes/display.php';
 require_once __DIR__ . '/includes/menu-items.php';

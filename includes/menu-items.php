@@ -84,8 +84,13 @@ function load_admin_bar_items( \WP_Admin_Bar $wp_admin_bar ) {
 		// Now attempt to fetch the children.
 		$fetch_children = apply_filters( Core\HOOK_PREFIX . $action_id . '_default_dataset', [] );
 
-		// If we have none, bail.
+		// Skip the rest if no child items exist.
 		if ( empty( $fetch_children ) ) {
+
+			// Remove the node we just made.
+			$wp_admin_bar->remove_node( $menu_id );
+
+			// And go to the next.
 			continue;
 		}
 
