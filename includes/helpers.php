@@ -44,7 +44,7 @@ function format_server_data() {
 
 	// Grab all the server data.
 	$fetch_srv_data = filter_input_array( INPUT_SERVER, FILTER_SANITIZE_SPECIAL_CHARS );
-	//preprint( $fetch_srv_data, true );
+
 	// Set the empties.
 	$setup_software = '';
 	$setup_version  = '';

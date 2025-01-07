@@ -333,6 +333,32 @@ function add_server_menu_items( $menu_items ) {
 		],
 	];
 
+	// Add the additional data if we have it.
+	if ( function_exists( 'php_uname' ) ) {
+
+		// The host data.
+		$setup_data['srv-host'] = [
+			'label' => __( 'What host setup exists', 'admin-bar-stats' ),
+			'title' => __( 'Host', 'admin-bar-stats' ),
+			'data'  =>php_uname( 'n' ),
+		];
+
+		// The OS constant.
+		$setup_data['srv-os'] = [
+			'label' => __( 'What operating system your server is running', 'admin-bar-stats' ),
+			'title' => __( 'OS', 'admin-bar-stats' ),
+			'data'  => php_uname( 's' ) . ' ' . php_uname( 'r' ),
+		];
+
+		// The architecture constant.
+		$setup_data['srv-arch'] = [
+			'label' => __( 'What architecture your server is running', 'admin-bar-stats' ),
+			'title' => __( 'Architecture', 'admin-bar-stats' ),
+			'data'  => php_uname( 'm' ),
+		];
+	}
+
+
 	// Return the array.
 	return apply_filters( Core\HOOK_PREFIX . 'server_dataset', $setup_data );
 }

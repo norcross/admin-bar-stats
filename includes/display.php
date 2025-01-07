@@ -57,6 +57,7 @@ function load_admin_bar_css() {
 		}
 
 		#wp-admin-bar-admin-bar-stats-main span.abs-display-menu-item.abs-display-item-data {
+			padding-right: 5px;
 		}
 
 		span.abs-display-title-green {
