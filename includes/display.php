@@ -44,8 +44,16 @@ function load_admin_bar_css() {
 		}
 
 		#wp-admin-bar-admin-bar-stats-main span.abs-display-menu-item.abs-display-item-title {
-			width: 220px;
+			min-width: 100px;
 			color: #c3c4c7;
+		}
+
+		#wp-admin-bar-admin-bar-stats-main ul#wp-admin-bar-admin-bar-stats-wp-default span.abs-display-menu-item.abs-display-item-title {
+			min-width: 220px;
+		}
+
+		#wp-admin-bar-admin-bar-stats-main ul#wp-admin-bar-admin-bar-stats-db-default span.abs-display-menu-item.abs-display-item-title {
+			min-width: 120px;
 		}
 
 		#wp-admin-bar-admin-bar-stats-main span.abs-display-menu-item.abs-display-item-data {

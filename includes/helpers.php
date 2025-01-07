@@ -42,24 +42,31 @@ function format_bool_constant( $constant ) {
  */
 function format_server_data() {
 
-	// Grab the variable.
-	$fetch_srv_data = filter_input( INPUT_SERVER, 'SERVER_SOFTWARE', FILTER_SANITIZE_SPECIAL_CHARS );
+	// Grab all the server data.
+	$fetch_srv_data = filter_input_array( INPUT_SERVER, FILTER_SANITIZE_SPECIAL_CHARS );
+	//preprint( $fetch_srv_data, true );
+	// Set the empties.
+	$setup_software = '';
+	$setup_version  = '';
 
-	// Return two parts if unknown.
-	if ( empty( $fetch_srv_data ) ) {
-		return [
-			'software' => 'unknown',
-			'version'  => 'unknown',
-		];
+	// Parse and add it.
+	if ( ! empty( $fetch_srv_data['SERVER_SOFTWARE'] ) ) {
+
+		// Build the array.
+		$build_srv_data = explode( ' ', wp_unslash( $fetch_srv_data['SERVER_SOFTWARE'] ) );
+		$clean_srv_data = explode( '/', reset( $build_srv_data ) );
+
+		// And define the variables.
+		$setup_software = $clean_srv_data[0];
+		$setup_version  = $clean_srv_data[1];
 	}
-
-	// Build the array.
-	$build_srv_data = explode( ' ', wp_unslash( $fetch_srv_data ) );
-	$clean_srv_data = explode( '/', reset( $build_srv_data ) );
 
 	// Return each part.
 	return [
-		'software' => $clean_srv_data[0],
-		'version'  => $clean_srv_data[1],
+		'software'   => $setup_software,
+		'version'    => $setup_version,
+		'server-ip'  => $fetch_srv_data['SERVER_ADDR'],
+		'remote-ip'  => $fetch_srv_data['REMOTE_ADDR'],
+		'basic-auth' => wp_is_site_protected_by_basic_auth() ? 'true' : 'false',
 	];
 }

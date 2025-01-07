@@ -299,6 +299,11 @@ function add_server_menu_items( $menu_items ) {
 	// Get the server data.
 	$srvr_args  = Helpers\format_server_data();
 
+	// Bail if none exist.
+	if ( empty( $srvr_args ) ) {
+		return false;
+	}
+
 	// Set up our default args.
 	$setup_data = [
 		'srv-software' => [
@@ -310,6 +315,21 @@ function add_server_menu_items( $menu_items ) {
 			'label' => __( 'This is the server software version you are currently running', 'admin-bar-stats' ),
 			'title' => __( 'Version', 'admin-bar-stats' ),
 			'data'  => $srvr_args['version'],
+		],
+		'srv-server-ip' => [
+			'label' => __( 'This is the server IP address of the server', 'admin-bar-stats' ),
+			'title' => __( 'Server IP', 'admin-bar-stats' ),
+			'data'  => $srvr_args['server-ip'],
+		],
+		'srv-remote-ip' => [
+			'label' => __( 'This is the remote IP address of the server', 'admin-bar-stats' ),
+			'title' => __( 'Remote IP', 'admin-bar-stats' ),
+			'data'  => $srvr_args['remote-ip'],
+		],
+		'srv-basic-auth' => [
+			'label' => __( 'Whether or not basic auth is set up', 'admin-bar-stats' ),
+			'title' => __( 'Basic Auth', 'admin-bar-stats' ),
+			'data'  => $srvr_args['basic-auth'],
 		],
 	];
 
